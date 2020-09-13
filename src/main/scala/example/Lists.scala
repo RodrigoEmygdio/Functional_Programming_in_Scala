@@ -2,8 +2,6 @@ package example
 
 object Lists {
 
-  var maxNumber: Int = 0
-
   /**
    * This method computes the sum of all elements in the list xs. There are
    * multiple techniques that can be used for implementing this method, and
@@ -41,24 +39,23 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
   def max(xs: List[Int]): Int = {
-    val tempList = xs.tail
-    maxNumber = verifyMaxNumber(xs.head)
-    if(tempList.isEmpty) {
-      val maior = maxNumber
-      maxNumber = 0
-      maior
-    }else
-      max(tempList)
 
+    def loopInList(list: List[Int],maxNumber:Int): Int ={
+
+      val head = list.head
+      def verifyMaxNumber(head:Int): Int = if (maxNumber > head) maxNumber else head
+      val listTail = list.tail
+
+      if(listTail.isEmpty)
+        maxNumber
+      else
+        loopInList(listTail,verifyMaxNumber(head))
+
+    }
+
+    loopInList(xs, 0)
 
   }
-
-  /**
-   *  Compare tempHead with maxNumber and return the major one
-   * @param tempHead first elemnt of xs in max
-   * @return major number
-   */
-  def verifyMaxNumber(tempHead: Int): Int =  if (maxNumber > tempHead)   maxNumber    else   tempHead
 
 }
 
