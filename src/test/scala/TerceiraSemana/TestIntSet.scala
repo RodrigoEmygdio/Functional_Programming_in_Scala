@@ -15,7 +15,7 @@ class TestIntSet {
     println(s"t3: ${t3}")
     println(s"t2 ${t2}")
     println(s"t3.union(t2): ${unionSets}")
-    assertEquals(3,unionSets.getLeft.getElemen)
+    assertEquals(4,unionSets.getRight.getElemen)
   }
 
   @Test def `should create union set with no equals values` = {
